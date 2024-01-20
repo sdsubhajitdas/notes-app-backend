@@ -9,11 +9,14 @@ export default function errorHandler(
 ) {
   if (!error.statusCode) error = new InternalServerError(error.message);
 
-  // Log the error
-  console.error(
-    `[${new Date().toISOString()}] ${error.name}: ${error.message}`,
-  );
-  if (error.stack) console.error(error.stack);
+  if (process.env.NODE_ENV !== "test") {
+    // Log the error
+    console.error(
+      `[${new Date().toISOString()}] ${error.name}: ${error.message}`,
+    );
+    if (error.stack) console.error(error.stack);
+  }
+
 
   // Send a response based on the environment
   if (process.env.NODE_ENV === "production") {

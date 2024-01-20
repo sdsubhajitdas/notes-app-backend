@@ -1,15 +1,16 @@
 {
   "name": "notes-app-backend",
   "version": "1.0.0",
-  "description": "Notes ",
+  "description": "A simple notes taking application written in Typescript.",
   "main": "src/index.js",
   "scripts": {
     "build": "npx tsc",
-    "start": "NODE_ENV=production node dist/index.js",
-    "dev": "nodemon src/index.ts",
     "db-introspect": "drizzle-kit introspect:pg",
     "db-migrate": "drizzle-kit generate:pg",
-    "prettier": "prettier . --write"
+    "dev": "nodemon src/index.ts",
+    "prettier": "prettier . --write",
+    "start": "NODE_ENV=production node dist/index.js",
+    "test": "NODE_ENV=test vitest"
   },
   "author": "Subhajit Das",
   "license": "ISC",
@@ -20,13 +21,14 @@
     "@types/jsonwebtoken": "^9.0.5",
     "@types/lodash": "^4.14.202",
     "@types/node": "^20.10.6",
+    "@types/supertest": "^6.0.2",
     "drizzle-kit": "^0.20.10-8c690cf",
-    "jest": "^29.7.0",
     "nodemon": "^3.0.2",
     "prettier": "3.1.1",
     "supertest": "^6.3.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.1"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

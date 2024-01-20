@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { eq } from "drizzle-orm";
 import _ from "lodash";
 
-const { verifyAccessToken } = require("../utils/jwt");
+import { verifyAccessToken } from "../utils/jwt";
 import db from "../db";
 import { AuthorizationError, InternalServerError } from "../errors";
 import { users } from "../db/schema";
