@@ -1,6 +1,9 @@
 import request from "supertest";
-import { test, describe, expect } from "vitest";
+import { test, describe, expect, afterAll } from "vitest";
 import app from "../server";
+import db from "../db";
+import { users } from "../db/schema";
+import { eq } from "drizzle-orm";
 
 /*
 Integration test users
@@ -148,6 +151,7 @@ describe("Authentication routes testing", function () {
       expect(error.name).toBe("UserExistsError");
     });
 
+    let randomTestUserId: number;
     test("Valid email and password", async function () {
       var randomNumber = Math.floor(1000 + Math.random() * 9000);
       const response = await request(app)
@@ -156,7 +160,16 @@ describe("Authentication routes testing", function () {
           email: `testuser${randomNumber}@example.com`,
           password: "1234abcd",
         });
+
+      randomTestUserId = JSON.parse(response.text).id;
+
+      console.log(randomTestUserId);
+      console.log(JSON.parse(response.text).email);
       expect(response.status).toBe(201);
     });
+
+    afterAll(async function () {
+      await await db.delete(users).where(eq(users.id, randomTestUserId));
+    })
   });
 });
