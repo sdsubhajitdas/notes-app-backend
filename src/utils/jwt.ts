@@ -24,12 +24,12 @@ export function verifyAccessToken(accessToken: string) {
   if (!process.env.ACCESS_TOKEN_SECRET) {
     throw new InternalServerError();
   }
-  return jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+  return jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET) as User;
 }
 
 export function verifyRefreshToken(refreshToken: string) {
   if (!process.env.REFRESH_TOKEN_SECRET) {
     throw new InternalServerError();
   }
-  return jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+  return jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET) as User;
 }
