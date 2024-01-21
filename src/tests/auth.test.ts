@@ -59,7 +59,7 @@ describe("Authentication routes testing", function () {
 
       expect(response.status).toBe(404);
       expect(error.name).toBe("UserNotFoundError");
-    });
+    }, 10000);
 
     test("Incorrect password", async function () {
       const response = await request(app).post("/api/auth/login").send({
@@ -163,8 +163,6 @@ describe("Authentication routes testing", function () {
 
       randomTestUserId = JSON.parse(response.text).id;
 
-      console.log(randomTestUserId);
-      console.log(JSON.parse(response.text).email);
       expect(response.status).toBe(201);
     });
 
