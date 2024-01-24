@@ -81,3 +81,45 @@ Introducing our Notes Sharing Application Backend—securely log in, store, and 
   ```
   npm run dev
   ```
+
+## Test status
+
+The project includes some test cases which are written to test every API backend route.
+Current Status of the tests
+
+```
+✓ src/tests/notes.test.ts (27) 29646ms
+ ✓ src/tests/auth.test.ts (13) 8284ms
+
+ Test Files  2 passed (2)
+      Tests  40 passed (40)
+   Start at  22:45:21
+   Duration  30.99s (transform 393ms, setup 0ms, collect 1.99s, tests 37.93s, environment 0ms, prepare 224ms)
+```
+
+- To run the tests locally run the command below
+
+  ```
+  npm test
+  ```
+
+## Production build
+
+To build the production version of this project run the following commands. This will convert the Typescript project to Javascript and start the express web server.
+
+```
+npm run build
+npm run start
+```
+
+## Database
+
+This project uses Postgresql to store all data and Redis to rate limit the API. I have used Neon and Upstash to host by DB and Redis instance.
+Drizzle ORM was used to write data to DB in a type safe manner.
+
+Using Drizzle ORM we can do DB migrations and introspection on the database.
+
+```
+npm run db-migrate
+npm run db-introspect
+```
